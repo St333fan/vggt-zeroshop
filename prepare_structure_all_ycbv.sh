@@ -9,7 +9,7 @@ BASE_PATH="/home/stefan/Downloads/dataset_test_real_labor"
 
 
 # Path to the Python script
-PYTHON_SCRIPT="/home/stefan/PycharmProjects/vggt/prepare_structure.py"
+PYTHON_SCRIPT="prepare_structure.py"
 
 # Check if the Python script exists
 if [ ! -f "$PYTHON_SCRIPT" ]; then
