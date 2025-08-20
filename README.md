@@ -1,5 +1,50 @@
+## Get Started with ZeroSop Camera-Registration (first Setup Repo, scroll down)
+### Render YCB-V First, set to 30 Cameras
+https://github.com/St333fan/BlenderProcRenderBOP
+
+### Processing YCB-V Renders
+
+1. VGGT + BA 
+```bash
+# generate structure, for one object
+python prepare_structure.py ~/Downloads/objs_sizex10/objs_texture_sizex10/obj_000003
+
+## generate structure for ycb-v test all, adapt dataset path in there
+chmod +x prepare_structure_all_ycbv.sh
+prepare_structure_all_ycbv.sh
+```
+Run Registration; uses a lot of VRAM!
+```bash
+# make camera-registration-colmap-model, for one object scene
+python demo_colmap.py --scene_dir <colmap_path> --use_ba --shared_camera --query_frame_num <n_images> --may_query_pts 4096 --fine_tracking
+
+## generate camera-registration-colmap-model for ycb-v test all, adapt dataset path in there
+chmod +x ./colmap_all_ycbv.sh
+./colmap_all_ycbv.sh
+```
+```bash
+# folder structure afterwards
+├── obj_000003
+│   └── train_pbr
+│       ├── 000000
+│       │   ├── mask
+│       │   ├── rgb
+│       │   └── rgb_mask
+│       └── vggt
+│           ├── segmented
+│           │   ├── images
+│           │   ├── masks
+│           │   └── sparse
+│           │       └── 0
+│           └── surface
+│               ├── images
+│               ├── masks
+│               └── sparse
+│                   └── 0
+```
+
 <div align="center">
-<h1>VGGT: Visual Geometry Grounded Transformer</h1>
+<h1> Original Git --> VGGT: Visual Geometry Grounded Transformer</h1>
 
 <a href="https://jytime.github.io/data/VGGT_CVPR25.pdf" target="_blank" rel="noopener noreferrer">
   <img src="https://img.shields.io/badge/Paper-VGGT" alt="Paper PDF">
