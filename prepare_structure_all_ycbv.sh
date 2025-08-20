@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Bash script to process all objects from 0 to 21 using prepare_structure.py
+# Bash script to process all objects from 1 to 21 using prepare_structure.py
 # This script runs the Python script for each object directory
 
 # Base path where all object directories are located
@@ -23,7 +23,7 @@ if [ ! -d "$BASE_PATH" ]; then
     exit 1
 fi
 
-echo "Starting processing of objects 0 to 21..."
+echo "Starting processing of objects 1 to 21..."
 echo "Base path: $BASE_PATH"
 echo "Python script: $PYTHON_SCRIPT"
 echo "========================================"
