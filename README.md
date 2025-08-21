@@ -16,8 +16,8 @@ pip install -r requirements.txt
 python prepare_structure.py ~/Downloads/objs_sizex10/objs_texture_sizex10/obj_000003
 
 ## generate structure for ycb-v test all, adapt dataset path in there
-chmod +x prepare_structure_all_ycbv.sh
-prepare_structure_all_ycbv.sh
+chmod +x ./prepare_structure_all_ycbv.sh
+./prepare_structure_all_ycbv.sh
 ```
 Run Registration; uses a lot of VRAM!
 ```bash
