@@ -22,7 +22,7 @@ chmod +x ./prepare_structure_all_ycbv.sh
 Run Registration; uses a lot of VRAM!
 ```bash
 # make camera-registration-colmap-model, for one object scene
-python demo_colmap.py --scene_dir <colmap_path> --use_ba --shared_camera --query_frame_num <n_images> --may_query_pts 4096 --fine_tracking
+python demo_colmap.py --scene_dir <colmap_path> --use_ba --shared_camera --query_frame_num <n_images> --max_query_pts 4096 --fine_tracking
 
 ## generate camera-registration-colmap-model for ycb-v test all, adapt dataset path in there
 chmod +x ./colmap_all_ycbv.sh
