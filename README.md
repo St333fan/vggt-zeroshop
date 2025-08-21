@@ -6,7 +6,7 @@ https://github.com/St333fan/BlenderProcRenderBOP
 ```bash
 conda create -y -n vggt python=3.10
 conda activate vggt
-pip install -r requirements.txt
+pip install -r requirements_demo.txt
 ```
 ### Processing YCB-V Renders
 
