@@ -2,6 +2,12 @@
 ### Render YCB-V First, set to 30 Cameras
 https://github.com/St333fan/BlenderProcRenderBOP
 
+### conda
+```bash
+conda create -y -n vggt python=3.10
+conda activate vggt
+pip install -r requirements.txt
+```
 ### Processing YCB-V Renders
 
 1. VGGT + BA 
