@@ -8,6 +8,10 @@ conda create -y -n vggt python=3.10
 conda activate vggt
 pip install -r requirements_demo.txt
 ```
+### Docker with colmap, Cuda 12.2
+```bash
+docker run --gpus all --name vggt_colmap_zeroshop -it -v /home/v4r/zeroshop:/workspace colmap/colmap:20231029.4 /bin/bash
+```
 ### Processing YCB-V Renders
 
 1. VGGT + BA 
