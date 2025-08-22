@@ -1,13 +1,19 @@
 #!/bin/bash
 
-# Bash script to process all objects from 0 to 21 using kapture_mast3r_mapping_all.py
-# This script runs the Python script for each object directory
+# Set RUN_MODE to "both", "surface", or "segmented"
+RUN_MODE="segmented"  # Options: both, surface, segmented
+
+# Parameters for each mode
+# Surface mode parameters
+SURFACE_PARAMS="--use_ba --shared_camera --fine_tracking --query_frame_num 20 --max_query_pts 2048"
+# Segmented mode parameters
+SEGMENTED_PARAMS="--use_ba --shared_camera --fine_tracking --query_frame_num 30 --max_query_pts 768"
 
 # Base path where all object directories are located
-BASE_PATH="/home/stefan/Downloads/dataset_test_real_labor"
+BASE_PATH="./objs_texture_sizex10"
 
 # Path to the Python script
-PYTHON_SCRIPT="./demo_colmap.py"
+PYTHON_SCRIPT="demo_colmap.py"
 
 # Check if the Python script exists
 if [ ! -f "$PYTHON_SCRIPT" ]; then
@@ -21,18 +27,16 @@ if [ ! -d "$BASE_PATH" ]; then
     exit 1
 fi
 
-echo "Starting kapture_mast3r_mapping processing for objects 0 to 21..."
+echo "Starting vggt processing for objects 1 to 21..."
 echo "Base path: $BASE_PATH"
 echo "Python script: $PYTHON_SCRIPT"
+echo "RUN_MODE: $RUN_MODE"
 echo "========================================"
 
-# Counter for successful and failed processing
 success_count=0
 failed_count=0
 failed_objects=()
 
-
-# Loop through objects 1 to 21
 for i in {1..21}; do
     obj_num=$(printf "%06d" $i)
     obj_path="$BASE_PATH/obj_$obj_num"
@@ -48,8 +52,20 @@ for i in {1..21}; do
         continue
     fi
 
-    # Process both segmented and surface under train_pbr/vggt
-    for mode in segmented surface; do
+    # Decide which modes to run
+    MODES=()
+    if [ "$RUN_MODE" = "both" ]; then
+        MODES=("segmented" "surface")
+    elif [ "$RUN_MODE" = "surface" ]; then
+        MODES=("surface")
+    elif [ "$RUN_MODE" = "segmented" ]; then
+        MODES=("segmented")
+    else
+        echo "Invalid RUN_MODE: $RUN_MODE"
+        exit 1
+    fi
+
+    for mode in "${MODES[@]}"; do
         mode_dir="$obj_path/train_pbr/vggt/$mode"
         images_dir="$mode_dir/images"
         if [ ! -d "$images_dir" ]; then
@@ -57,8 +73,15 @@ for i in {1..21}; do
             continue
         fi
 
-        echo "Running: python3 demo_colmap.py --scene_dir $mode_dir --use_ba --shared_camera --fine_tracking --query_frame_num 20"
-        if python3 "$PYTHON_SCRIPT" --use_ba --scene_dir "$mode_dir" --shared_camera --fine_tracking --query_frame_num 20 --max_query_pts 4096; then
+        # Select parameters based on mode
+        if [ "$mode" = "surface" ]; then
+            MODE_PARAMS=$SURFACE_PARAMS
+        else
+            MODE_PARAMS=$SEGMENTED_PARAMS
+        fi
+
+        echo "Running: python3 demo_colmap.py --scene_dir $mode_dir $MODE_PARAMS"
+        if python3 "$PYTHON_SCRIPT" --scene_dir "$mode_dir" $MODE_PARAMS; then
             echo "✓ Successfully processed $mode for obj_$obj_num"
         else
             echo "✗ Failed to process $mode for obj_$obj_num"
