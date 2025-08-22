@@ -5,7 +5,7 @@ RUN_MODE="segmented"  # Options: both, surface, segmented
 
 # Parameters for each mode
 # Surface mode parameters
-SURFACE_PARAMS="--use_ba --shared_camera --fine_tracking --query_frame_num 20 --max_query_pts 2048"
+SURFACE_PARAMS="--use_ba --shared_camera --fine_tracking --query_frame_num 20 --max_query_pts 1536"
 # Segmented mode parameters
 SEGMENTED_PARAMS="--use_ba --shared_camera --fine_tracking --query_frame_num 30 --max_query_pts 768"
 
