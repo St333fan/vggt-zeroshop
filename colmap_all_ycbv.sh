@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Set RUN_MODE to "both", "surface", or "segmented"
-RUN_MODE="segmented"  # Options: both, surface, segmented
+RUN_MODE="both"  # Options: both, surface, segmented
 
 # Parameters for each mode
 # Surface mode parameters
