@@ -32,6 +32,11 @@ python demo_colmap.py --scene_dir <colmap_path> --use_ba --shared_camera --query
 ## cuda out of memory issues: https://github.com/facebookresearch/vggt/issues/11
 chmod +x ./colmap_all_ycbv.sh
 ./colmap_all_ycbv.sh
+# for older graphics cards
+#@jytime Thank you, it works after I changed
+#dpt_head -> _apply_pos_embed
+#from  return x + pos_embed to  return x + pos_embed.to(torch.float16)
+#For some reason it converts the data type to float32 if I don`t convert it manualy, CHANGE EVERYTHING MANUALLY TO **torch.float16**
 ```
 ```bash
 # folder structure afterwards
