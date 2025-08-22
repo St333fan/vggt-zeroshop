@@ -30,8 +30,11 @@ python demo_colmap.py --scene_dir <colmap_path> --use_ba --shared_camera --query
 
 ## generate camera-registration-colmap-model for ycb-v test all, adapt dataset path in there
 ## cuda out of memory issues: https://github.com/facebookresearch/vggt/issues/11
+export PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True
+
 chmod +x ./colmap_all_ycbv.sh
 ./colmap_all_ycbv.sh
+
 # for older graphics cards
 #@jytime Thank you, it works after I changed
 #dpt_head -> _apply_pos_embed
