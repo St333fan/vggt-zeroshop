@@ -41,7 +41,7 @@ def load_and_preprocess_images_square(image_path_list, target_size=1024):
         img = Image.open(image_path)
 
         # If there's an alpha channel, blend onto white background
-        if img.mode == "RGBA":
+        if img.mode == "RGBA" and False:
             background = Image.new("RGBA", img.size, (255, 255, 255, 255))
             img = Image.alpha_composite(background, img)
 
@@ -140,7 +140,7 @@ def load_and_preprocess_images(image_path_list, mode="crop"):
         img = Image.open(image_path)
 
         # If there's an alpha channel, blend onto white background:
-        if img.mode == "RGBA":
+        if img.mode == "RGBA" and False:
             # Create white background
             background = Image.new("RGBA", img.size, (255, 255, 255, 255))
             # Alpha composite onto the white background
