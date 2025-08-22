@@ -23,7 +23,7 @@ python prepare_structure.py ~/Downloads/objs_sizex10/objs_texture_sizex10/obj_00
 chmod +x ./prepare_structure_all_ycbv.sh
 ./prepare_structure_all_ycbv.sh
 ```
-Run Registration; uses a lot of VRAM!
+Run Registration; uses a lot of VRAM! 24GB minimum best would be 32GB and up
 ```bash
 # make camera-registration-colmap-model, for one object scene
 python demo_colmap.py --scene_dir <colmap_path> --use_ba --shared_camera --query_frame_num <n_images> --max_query_pts 4096 --fine_tracking
